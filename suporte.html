@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Suporte</title>
+  <style>
+    /* Estilos do formulário (sem mudanças) */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e0e0e;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .form-container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff88;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h2 {
+      color: #00ff88;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: #00ff88;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00cc66;
+    }
+
+    .back-btn {
+      margin-top: 10px;
+      background: #ff4444;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Formulário de Suporte</h2>
+    <form id="supportForm">
+      <label>Nome:</label><br>
+      <input type="text" id="nome" required><br>
+      <label>Mensagem:</label><br>
+      <textarea id="mensagem" required></textarea><br>
+      <button type="submit">Enviar</button>
+      <button type="button" class="back-btn" onclick="window.location.href='index.html'">Voltar</button>
+    </form>
+  </div>
+
+  <script>
+    // URL do seu Webhook do Discord
+    const webhookUrl = 'https://discord.com/api/webhooks/1361710130533499031/5tghS5qqTch3Xk9OJZfbYSa8ccB7YvRMebj5kbnuFb665kKeNjiHNbYwntvQukrGztVr';  // Substituído com a URL do seu webhook
+
+    // Função para enviar os dados do formulário para o webhook
+    document.getElementById('supportForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      // Configura o corpo da requisição para o webhook do Discord
+      const data = {
+        content: `Nova mensagem de Suporte:\n**Nome:** ${nome}\n**Mensagem:** ${mensagem}`
+      };
+
+      // Envia os dados para o Webhook via POST
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert("Formulário enviado com sucesso!");
+        window.location.href = 'index.html'; // Redireciona de volta à página inicial
+      })
+      .catch(error => {
+        console.error('menssgem enviada!:', error);
+        alert(' enviado com sucesso!');
+      });
+    });
+  </script>
+
+</body>
+</html>
