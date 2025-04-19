@@ -1,2 +1,0 @@
-# Disney-login-ofc
-DISCNET !
