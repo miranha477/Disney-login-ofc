@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login DiscNet</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e0e0e;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff88;
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #00ff88;
+    }
+
+    p {
+      text-align: center;
+      font-size: 13px;
+      color: #bbb;
+      margin-top: -5px;
+      margin-bottom: 20px;
+    }
+
+    .inputbox {
+      margin-bottom: 15px;
+    }
+
+    .inputbox input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #2e2e2e;
+      color: #fff;
+    }
+
+    .inputbox input::placeholder {
+      color: #888;
+    }
+
+    .inputbox label {
+      display: block;
+      margin-bottom: 5px;
+      color: #00ff88;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00ff88;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00cc66;
+    }
+
+    .btn-cadastrar {
+      margin-top: 10px;
+      background: transparent;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-cadastrar:hover {
+      background-color: #00ff8822;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Login RP - DiscNet</h2>
+    <p>Use os dados que você cadastrou para entrar na city.</p>
+
+    <form id="loginForm">
+      <div class="inputbox">
+        <label for="robloxUser">Email cadastrado:</label>
+        <input type="email" id="robloxUser" placeholder="exemplo@email.com" required>
+      </div>
+
+      <div class="inputbox">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit" class="btn-voltar">Finalizar o Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('robloxUser').value.trim();
+      const senha = document.getElementById('password').value.trim();
+
+      const dadosSalvos = JSON.parse(localStorage.getItem("cadastroRP"));
+
+      if (dadosSalvos && dadosSalvos.email === email && dadosSalvos.password === senha) {
+        const fala = new SpeechSynthesisUtterance("Seja bem-vindo à DiscNet!");
+        fala.lang = "pt-BR";
+        fala.rate = 0.95;
+        fala.pitch = 1.1;
+
+        window.speechSynthesis.speak(fala);
+
+        fala.onend = () => {
+          alert("Login feito com sucesso, seja bem-vindo(a)!");
+          window.location.href = 'infoma.html';
+        };
+      } else {
+        alert("Email ou senha inválidos. Tente novamente ou cadastre-se.");
+      }
+    });
+  </script>
+</body>
+</html>

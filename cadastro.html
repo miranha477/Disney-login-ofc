@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro RP - DiscNet</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e0e0e;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff88;
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #00ff88;
+    }
+
+    .inputbox {
+      margin-bottom: 15px;
+    }
+
+    .inputbox label {
+      display: block;
+      margin-bottom: 5px;
+      color: #00ff88;
+    }
+
+    .inputbox input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #2e2e2e;
+      color: #fff;
+    }
+
+    .inputbox input::placeholder {
+      color: #888;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00ff88;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00cc66;
+    }
+
+    .btn-login {
+      margin-top: 10px;
+      background: transparent;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-login:hover {
+      background-color: #00ff8822;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Cadastro RP - DiscNet</h2>
+
+    <form id="registerForm">
+      <div class="inputbox">
+        <label for="email">Email (obrigatório):</label>
+        <input type="email" id="email" placeholder="exemplo@email.com" required>
+      </div>
+
+      <div class="inputbox">
+        <label for="name">Nome (obrigatório):</label>
+        <input type="text" id="name" placeholder="Seu nome" required>
+      </div>
+
+      <div class="inputbox">
+        <label for="password">Senha (obrigatório):</label>
+        <input type="password" id="password" placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit">Entrar na City</button>
+    </form>
+
+    <button class="btn-login" onclick="window.location.href='login.html'">Voltar para Login</button>
+  </div>
+
+  <script>
+    // Aguarda o carregamento total da página antes de rodar o script
+    window.onload = () => {
+      const form = document.getElementById("registerForm");
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (email === "" || name === "" || password === "") {
+          alert("Preencha todos os campos corretamente!");
+          return;
+        }
+
+        const dados = {
+          email,
+          name,
+          password
+        };
+
+        // Salva no localStorage
+        localStorage.setItem("cadastroRP", JSON.stringify(dados));
+
+        // Mensagem falada
+        const fala = new SpeechSynthesisUtterance("Cadastro feito com sucesso! Bem-vindo à DiscNet.");
+        fala.lang = "pt-BR";
+        window.speechSynthesis.speak(fala);
+
+        // Mostra alerta e redireciona
+        setTimeout(() => {
+          alert("Cadastro feito com sucesso!");
+          window.location.href = "login.html";
+        }, 500); // Espera meio segundo pra voz terminar
+      });
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bem-vindo/a</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e0e0e;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    /* Estilo para a barra superior (botão de suporte) */
+    .top-bar {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      margin: 5px;
+      background: #00ff88;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: #00cc66;
+    }
+
+    /* Banner de Boas-Vindas */
+    .hero {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 200px; /* Menor altura */
+      background: url('https://cdn.discordapp.com/attachments/1361069183105765477/1361814799037628559/standard_1.gif') center/cover no-repeat;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: #00ff88;
+      padding: 0 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    /* Animação para o título */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content h1 {
+      font-size: 36px; /* Fonte menor */
+      margin: 0;
+    }
+
+    .hero-content p {
+      font-size: 14px; /* Fonte menor */
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    .container {
+      background: #1e1e1e;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff88;
+      padding: 30px;
+      max-width: 850px;
+    }
+
+    .text-side {
+      flex-grow: 1;
+      max-width: 500px;
+    }
+
+    h1[type="subtitle"] {
+      color: #00ff88;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .text-side {
+        max-width: 100%;
+      }
+
+      .top-bar {
+        position: static;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .hero {
+        height: 150px; /* Reduzir mais a altura em telas pequenas */
+      }
+
+      .hero-content h1 {
+        font-size: 28px;
+      }
+
+      .hero-content p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botão de Suporte -->
+  <div class="top-bar">
+    <button class="btn" onclick="window.location.href='suporte.html'">Suporte</button>
+  </div>
+
+  <!-- Banner de Boas-Vindas -->
+  <div class="hero">
+    <div class="https://discord.com/api/webhooks/1361710130533499031/5tghS5qqTch3Xk9OJZfbYSa8ccB7YvRMebj5kbnuFb665kKeNjiHNbYwntvQukrGztVr-overlay"></div>
+    <div class="hero-content">
+      <h1>Bem-vindo à DiscNet!</h1>
+      <p>Conectando você à melhor comunidade</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="text-side">
+      <h1>Descubra nosso servidor</h1>
+      <p>Você é novo por aqui?</p>
+      <p>Se for novo, clique em <strong>Cadastrar</strong> para criar sua conta.<br>Se já tiver conta, vá para o <strong>Login</strong>.</p>
+
+      <button class="btn" onclick="window.location.href='cadastro.html'">Sou novo - Cadastrar</button>
+      <button class="btn" onclick="window.location.href='login.html'">Já tenho conta - Login</button>
+    </div>
+  </div>
+
+</body>
+</html>
